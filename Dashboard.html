@@ -6,24 +6,80 @@
     <title>Document</title>
     <link rel="stylesheet" href="dashboard.css">
     <script src="dashboard.js"></script>
+    <script src="https://kit.fontawesome.com/26361a567a.js" crossorigin="anonymous"></script> 
+
     
 </head>
 <body>
     <div class="header"><div>Dashboard</div><div class="img-container"><img src="background2.jpg" width="50px" height="50px"/></div></div>
     <div class="dashboard-container">
         <div class="first-box">
-            <div class="first-box-container"><img src="https://www.freeiconspng.com/uploads/ingredients-list-icon--icon-search-engine-10.png" width="20px" height="20px"/><div class="first-box-container-text">Add Category</div></div>
-            <div class="first-box-container" style="margin-top:20px;"><img src="https://www.freeiconspng.com/uploads/ingredients-list-icon--icon-search-engine-10.png" width="20px" height="20px"/><div class="first-box-container-text">Display Category</div></div>
+            <div class="first-box-container" id="addcategory" onclick="fire()"><div class="first-box-container-text">Add Category</div></div>
+            <div class="first-box-container" style="margin-top:20px;" onclick="displaycategory()"><div class="first-box-container-text">Display Category</div></div>
 
-            <div class="first-box-container" style="margin-top:20px;"><img src="https://www.freeiconspng.com/uploads/ingredients-list-icon--icon-search-engine-10.png" width="20px" height="20px"/><div class="first-box-container-text">Add Product</div></div>
-            <div class="first-box-container" style="margin-top:20px;"><img src="https://www.freeiconspng.com/uploads/ingredients-list-icon--icon-search-engine-10.png" width="20px" height="20px"/><div class="first-box-container-text">Display Product</div></div>
+            <div class="first-box-container" style="margin-top:20px;" onclick="addproduct()"><div class="first-box-container-text">Add Product</div></div>
+            <div class="first-box-container" style="margin-top:20px;"><div class="first-box-container-text">Display Product</div></div>
 
-            <div class="first-box-container" style="margin-top:20px;"><img src="https://www.freeiconspng.com/uploads/ingredients-list-icon--icon-search-engine-10.png" width="20px" height="20px"/><div class="first-box-container-text">Product Details</div></div>
-            <div class="first-box-container" style="margin-top:20px;"><img src="https://www.freeiconspng.com/uploads/ingredients-list-icon--icon-search-engine-10.png" width="20px" height="20px"/><div class="first-box-container-text">Display Product D.</div></div>
-            <div class="first-box-container" style="margin-top:20px;"><img src="https://www.freeiconspng.com/uploads/ingredients-list-icon--icon-search-engine-10.png" width="20px" height="20px"/><div class="first-box-container-text">Logout</div></div>
+            <div class="first-box-container" style="margin-top:20px;"><div class="first-box-container-text">Product Details</div></div>
+            <div class="first-box-container" style="margin-top:20px;"><div class="first-box-container-text">Display Product D.</div></div>
+            <div class="first-box-container" style="margin-top:20px;"><div class="first-box-container-text">Logout</div></div>
 
         </div>
-        <div class="second-box" id="second"></div>
+        
+        <div class="hidden" id="second" >
+            <div class="first-container">
+                <div class="login-container"> <div>Category Add</div></div>
+                <div class="field-container">
+                 <input type="text" maxlength="10" placeholder="Enter Category" id="users" onchange="validation()"/>
+                  <div id="inputfirsterr"></div>
+                 <!-- <input type="text" placeholder="Enter OTP" id="password" onchange="validation()"/> -->
+                 <input type="file" id="file"/>
+                 <div id="inputseconderr"></div>
+                </div>
+                <div class="btn-container">
+                 <div class="submit" onclick="submit()">Submit</div>
+                </div>
+             </div>
+        </div>
+     
+        <div  class="hd" id="dc">
+            <!-- <div class="display-coloumn"><div>Icon</div><div>Category Name</div><div>Product Name</div><div>Price</div><div>Offer Price</div></div> -->
+           
+            <div id="show" >
+                
+            </div>
+
+            
+        </div>
+
+
+
+       <div class="hidden-product" style="width:100%;display: flex;align-items: center;" id="pc">
+        <div class="product-container"  id="pc">
+        <div class="first-container">
+            <div class="login-container"> <div>Products</div></div>
+     
+            <div class="field-container">
+             
+                 <select id="dropdowna">
+                     <option value="">-Select Category-</option>
+                    
+     
+                 </select>
+             
+             <input type="text" maxlength="10" placeholder="Enter Productname" id="producthere" onchange="validation()"/>
+              <div id="inputfirsterr"></div>
+             <input type="file" id="filesa"/>
+             <div id="inputseconderr"></div>
+            </div>
+            <div class="btn-container" onclick="submitproduct()">
+             <div class="submit" >Submit</div>
+            </div>
+         </div>
+       
+       </div>
     </div>
+    </div>
+
 </body>
 </html>

@@ -16,23 +16,28 @@
     font-weight: bolder;
     -webkit-text-stroke-width: 1px;
     letter-spacing: 2px;
+    position: sticky;
+    top:0px;
 }
 .dashboard-container{
 display: flex;
 flex-direction: row;
+
 }
 .first-box{
     background: white;
     width: 15%;
     height: 87vh;
     box-shadow:inset 1px 0px 5px 0px;
-    
+    position: sticky;
+    top: 95px;
     
 }
-.second-box{
+#second{
     background-color: white;
     width: 85%;
     height: 87vh;
+    
 }
 .img-container img{
     border-radius: 50%;
@@ -58,3 +63,225 @@ flex-direction: row;
 .first-box-container-text{
     font-size: 20px;
 }
+.first-box-container:hover{
+    background: rgb(184, 178, 178);
+}
+
+
+
+@media screen and (max-width:750px)
+{
+    .first-box{
+        width: 45%;
+    }
+}
+@media screen and (max-width:726px){
+    .first-box{
+        width: 45%;
+    }
+}
+
+
+
+
+
+
+
+/* category css */
+#second{
+    background: rgba(243, 239, 239, 0.712);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 87vh;
+    /* background-image: url(background2.jpg); */
+    
+    
+}
+.first-container{
+    width: 38%;
+    height: 60%;
+    background: rgb(220, 212, 212);
+    align-self: center;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 2px rgb(148, 145, 145);
+    transition: width 1s;
+}
+.login-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.login-container div{
+    font-weight: bold;
+    font-size: 20px;
+    -webkit-text-stroke-width:1.5px ;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+.field-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.field-container input{
+    display: block;
+    width: 80%;
+    margin-top: 30px;
+    height: 45px;
+    outline: none;
+    border: none;
+    padding-left: 10px;
+    border-radius: 2px;
+    box-shadow: 0px 0px 3px 2px rgb(164, 157, 157);
+}
+.field-container input:hover{
+    box-shadow: 0px 0px 5px 3px rgb(164, 157, 157);
+
+}
+.btn-container{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 60px;
+   cursor: pointer;
+
+}
+.submit{
+    width: 70%;
+    background-color: rgb(175, 164, 164);
+    display: flex;
+    justify-content: center;
+    height: 2rem;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px 1px rgb(142, 139, 139);
+    font-weight: bolder;
+    font-size: 1rem;
+    -webkit-text-stroke-width: 0.5px;
+    letter-spacing: 2px;
+
+}
+
+.btn-container :hover{
+box-shadow: 0px 0px 5px 2px rgb(142, 139, 139);
+}
+
+
+#inputfirsterr{
+    /* justify-content: flex-start; */
+    width: 80%;
+    color: red;
+    margin-top: 5px;
+    font-size: 12px;
+}
+#inputseconderr{
+    /* justify-content: flex-start; */
+    width: 80%;
+    color: red;
+    margin-top: 5px;
+    font-size: 12px;
+}
+#password{
+    margin-top: 50px;
+}
+.hidden{
+    display: none !important;
+}
+.hd{
+    display: none;
+}
+#dc{
+    width: 90%;
+    padding-top: 10px;
+    width: 79vw;
+}
+.display-coloumn{
+    display: flex;
+  justify-content: space-between;
+    padding-left: 5%;
+    font-weight: bold;
+    -webkit-text-stroke-width: 0.2;   
+}
+.line-container{
+    display: flex;
+    justify-content: center;
+    margin-left: 4.5%;
+    margin-top: 5px;
+}
+.line{
+    width: 99%;
+    height: 1px;
+    background: black;
+}
+.table-container{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 4%;
+}
+table{
+    margin-left: 10px;
+}
+table tr td{
+    text-align: center;
+    
+}
+i{
+    cursor: pointer;
+}
+.field-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.field-container input,select{
+    display: block;
+    width: 80%;
+    margin-top: 30px;
+    height: 45px;
+    outline: none;
+    border: none;
+    padding-left: 10px;
+    border-radius: 2px;
+    box-shadow: 0px 0px 3px 2px rgb(164, 157, 157);
+}
+
+.field-container select{
+   
+    width: 82%;
+    margin-top: 30px;
+    height: 45px;
+    outline: none;
+    border: none;
+    padding-left: 10px;
+    border-radius: 2px;
+    box-shadow: 0px 0px 3px 2px rgb(164, 157, 157);
+}
+.product-container{
+    width: inherit;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.hidden-product{
+    display: none !important;
+    width: 80% !important;
+}
+#pc{
+    width: 85% !important;
+    height: 87vh !important;
+}
+
+
+
+
+
+
+
+
+
+
