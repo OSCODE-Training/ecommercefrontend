@@ -1,4 +1,6 @@
 var fetchcategory=[]
+var fetchproduct=[]
+var fetchproductbycateogyid=[]
 
 document.addEventListener('DOMContentLoaded', () => {
     // second.innerHTML='hello'
@@ -24,8 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
             data.data.forEach((item)=>{
                 var opt = document.createElement('option')
                 opt.text=item.categoryname
-                opt.value=item.categoryname
-                dropdown.add(opt)
+                opt.value=item.categoryid
+                dropdowna.add(opt)
+                // dropdownaa.add(opt)
+                
             })
         }
     })
@@ -33,6 +37,77 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Error:', error);
         alert("Error")
     });
+
+
+
+
+
+
+    fetch('http://localhost:3000/product/fetch_product', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        // body: JSON.stringify({categoryname:userna,picture:sp[index-1]}),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        
+        return response.json();
+    })
+    .then(data => {
+        fetchcategory=data.data 
+        console.log('Success:', data);
+        if(data.data.length>0)
+        {
+           fetchproduct = data.data
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert("Error")
+    });
+
+
+
+
+
+    fetch('http://localhost:3000/category/fetch_category', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        // body: JSON.stringify({categoryname:userna,picture:sp[index-1]}),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        
+        return response.json();
+    })
+    .then(data => {
+        fetchcategory=data.data 
+        console.log('Success:', data);
+        if(data.data.length>0)
+        {
+            data.data.forEach((item)=>{
+                var opt = document.createElement('option')
+                opt.text=item.categoryname
+                opt.value=item.categoryid
+                // dropdowna.add(opt)
+                dropdownaa.add(opt)
+                
+            })
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert("Error")
+    });
+
 })
 
 
@@ -40,6 +115,8 @@ function fire()
 {
 document.getElementById("dc").classList.add('hd')
 document.getElementById('pc').classList.add('hidden-product');
+document.getElementById("dp").classList.add('dtp')
+document.getElementById("prdetails").classList.add("productdetails")
 
 document.getElementById("second").classList.remove('hidden')
 
@@ -48,6 +125,9 @@ function displaycategory()
 {
     document.getElementById("second").classList.add('hidden')
     document.getElementById('pc').classList.add('hidden-product');
+    document.getElementById("dp").classList.add('dtp')
+    document.getElementById("prdetails").classList.add("productdetails")
+
 
     document.getElementById("dc").classList.remove('hd')
     
@@ -63,10 +143,127 @@ function displaycategory()
 
 }
 
+function changeproduct()
+{
+    for(j=dropdownproduct.options.length;j>=0;j--)
+        {
+            dropdownproduct.remove(j)
+        }
+
+    fetch('http://localhost:3000/product/fetch_product_by_categoryid', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({categoryid:dropdownaa.value}),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        
+        return response.json();
+    })
+    .then(data => {
+        fetchproductbycateogyid=data.data
+        console.log('Success:', data);
+        if(data.data.length>0)
+            {
+                data.data.forEach((item)=>{
+                    var opt = document.createElement('option')
+                    opt.text=item.productname
+                    opt.value=item.productid
+                    dropdownproduct.add(opt)
+                    
+                })
+            }
+        
+       
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert("Error")
+    });
+}
+
+
+function submit_productdetails()
+{
+    console.log(dropdownaa.value+" "+dropdownproduct.value+" "+color.value+" "+modelno.value+" "+price.value+" "+offerprice.value+" "+stock.value+" "+rating.value)
+    if(dropdownaa.value.trim() && dropdownproduct.value.trim() && modelno.value.trim() && price.value.trim() && offerprice.value.trim() && stock.value.trim() && rating.value.trim())
+    {
+
+    
+    fetch('http://localhost:3000/product/submit_productDetails', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({categoryid:dropdownaa.value,"stock":stock.value,productid:dropdownproduct.value,"color":color.value,"price":price.value,"offerprice":offerprice.value,"rating":rating.value,"modelno":modelno.value}),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        
+        return response.json();
+    })
+    .then(data => {
+        console.log('Success:', data);
+        alert("Successfully Submitted")
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert("Error")
+    });
+   }else
+   {
+    alert("Please FIll All the field")
+   }
+}
+
+function displayproduct()
+{
+    
+    document.getElementById("second").classList.add('hidden')
+    document.getElementById('pc').classList.add('hidden-product');
+
+    document.getElementById("dc").classList.add('hd')
+    document.getElementById("prdetails").classList.add("productdetails")
+
+    document.getElementById("dp").classList.remove('dtp')
+
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaa:",fetchproduct)
+    // var a =[{categoryname:'Pizza',productname:"Sub Pizza",price:80,offerprice:50},{categoryname:'Pizza',productname:"Sub Pizza",price:80,offerprice:50},{categoryname:'Pizza',productname:"Sub Pizza",price:80,offerprice:50},{categoryname:'Pizza',productname:"Sub Pizza",price:80,offerprice:50},{categoryname:'Pizza',productname:"Sub Pizza",price:80,offerprice:50},{categoryname:'Pizza',productname:"Sub Pizza",price:80,offerprice:50},{categoryname:'Pizza',productname:"Sub Pizza",price:80,offerprice:50},{categoryname:'Pizza',productname:"Sub Pizza",price:80,offerprice:50},{categoryname:'Pizza',productname:"Sub Pizza",price:80,offerprice:50},{categoryname:'Pizza',productname:"Sub Pizza",price:80,offerprice:50}]
+    var result =`<table width="100%" cellspacing='0' cellpadding="5"><tr "><th>Icon</th><th>S.No</th><th>Category Name</th><th>Product Name</th><th>Picture</th></tr>`
+    fetchproduct.map((item,index)=>{
+       
+        // result+=`<div class="table-container"><div><i class="fa-solid fa-pen-to-square" style="margin-right: 20px;"></i><i class="fa-solid fa-trash"></i></div><div>${item.categoryname}</div><div>${item.productname}</div><div>${item.price}</div><div>${item.offerprice}</div></div>`
+        result+=`<tr ><td height="50px"></td><td></td><td></td><td></td><td></td><td></td></tr><tr></tr><tr ><td><i class="fa-solid fa-pen-to-square" style="margin-right: 50px;"></i><i class="fa-solid fa-trash"></i></td><td>${index}</td><td>${item.categoryname}</td><td>${item.productname}</td></tr>`
+    })
+    result+=`</table>`
+    showp.innerHTML=result
+
+
+}
+
+function productdetails()
+{
+    document.getElementById("second").classList.add('hidden')
+    document.getElementById('pc').classList.add('hidden-product');
+
+    document.getElementById("dc").classList.add('hd')
+    document.getElementById("dp").classList.add('dtp')
+    document.getElementById("prdetails").classList.remove("productdetails")
+}
+
 function addproduct()
 {   
     document.getElementById("second").classList.add('hidden')
     document.getElementById("dc").classList.add('hd')
+    document.getElementById("dp").classList.add('dtp')
+    document.getElementById("prdetails").classList.add("productdetails")
+
     document.getElementById('pc').classList.remove('hidden-product');
     
 
@@ -156,62 +353,63 @@ function submit()
 
 
 
-function validationproduct()
-{
+// function validationproduct()
+// {
     
-    var categorye = dropdown.value
-   var productthere = productthere.value
-   var pass=filesa.value
-   var sp = pass.split('\\')
-   var index = sp.length;
-   alert(categorye)
+//     var categorye = dropdowna.value;
+//    var productthere = document.getElementById("productthere").value;
+//    var pass=filesa.value
+//    var sp = pass.split('\\')
+//    var index = sp.length;
+   
    
 
-   var r = true
-   if(!categorye)
-   {
-    document.getElementById('inputfirsterr').textContent="Please Enter Name"
-    r=false
-   }else {
-    document.getElementById('inputfirsterr').textContent=""
-   }
+//    var r = true
+//    if(!categorye)
+//    {
+//     document.getElementById('inputfirsterra').textContent="Please Select"
+//     r=false
+//    }else {
+//     document.getElementById('inputfirsterra').textContent=""
+//    }
 
-   if(!productthere)
-    {
-     document.getElementById('inputseconderr').textContent="Please Enter Name"
-     r=false
+//    if(!productthere)
+//     {
+//      document.getElementById('inputseconderra').textContent="Please Enter Name"
+//      r=false
  
-    }
-   else
-   {
+//     }
+//    else
+//    {
     
-    document.getElementById('inputseconderr').textContent=""
+//     document.getElementById('inputseconderra').textContent=""
 
-   }
-   return r
+//    }
+//    return r
 
-}
+// }
 
 
 function submitproduct()
 {
-    var categorye = dropdown.value
-   var productthere = productthere.value
+    var categorye = dropdowna.value
+   var productther = document.getElementById("producthere").value
     var pass=filesa.value
     console.log("dddddddddddddddddd:",filesa.files[0])
    
-   
+  
    var sp = pass.split('\\')
    var index = sp.length;
- if (validationproduct())
+  console.log("all data here:",categorye,productther,sp[index-1])
+ if (categorye.length>0 && productther.length>0 && sp[index-1].length>0)
 {
         
-        fetch('http://localhost:3000/category/submit_category', {
+        fetch('http://localhost:3000/product/submit_product', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({categoryname:userna,picture:sp[index-1]}),
+            body: JSON.stringify({categoryid:categorye,productname:productther,picture:sp[index-1]}),
         })
         .then(response => {
             if (!response.ok) {
@@ -232,46 +430,11 @@ function submitproduct()
         });
   
 }
+else{
+    alert("fill all field.")
+}
 }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-/*document.getElementById('send-data').addEventListener('click', () => {
-    const dataToSend = {
-        key1: 'value1',
-        key2: 'value2',
-    };
-
-    fetch('http://125.52.45:500/data', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dataToSend),
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Success:', data);
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-});
- */

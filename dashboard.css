@@ -19,6 +19,23 @@
     position: sticky;
     top:0px;
 }
+.dropdawntwo-container{
+    display: flex;
+    gap: 50px;
+}
+.dropdawntwo-container select{
+    display: block;
+    width: 90% !important;
+    margin-top: 30px;
+    height: 45px;
+    outline: none;
+    border: none;
+    padding-left: 17px;
+    padding-right: 80px;
+    border-radius: 2px;
+    box-shadow: 0px 0px 3px 2px rgb(164, 157, 157);
+}
+
 .dashboard-container{
 display: flex;
 flex-direction: row;
@@ -39,6 +56,7 @@ flex-direction: row;
     height: 87vh;
     
 }
+
 .img-container img{
     border-radius: 50%;
     font-weight: bold;
@@ -98,6 +116,8 @@ flex-direction: row;
     
     
 }
+
+
 .first-container{
     width: 38%;
     height: 60%;
@@ -192,10 +212,29 @@ box-shadow: 0px 0px 5px 2px rgb(142, 139, 139);
 .hd{
     display: none;
 }
+.dtp{
+    display: none !important;
+}
 #dc{
     width: 90%;
     padding-top: 10px;
     width: 79vw;
+}
+#dp{
+    width: 90%;
+    padding-top: 10px;
+    width: 79vw;
+}
+.productdetails{
+    display: none !important;
+    width: inherit;
+    
+    height: 80%;
+    background: rgb(220, 212, 212) !important;
+    align-self: center;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 2px rgb(148, 145, 145);
+    transition: width 1s;
 }
 .display-coloumn{
     display: flex;
@@ -275,6 +314,10 @@ i{
     width: 85% !important;
     height: 87vh !important;
 }
+
+
+
+
 
 
 

@@ -18,9 +18,9 @@
             <div class="first-box-container" style="margin-top:20px;" onclick="displaycategory()"><div class="first-box-container-text">Display Category</div></div>
 
             <div class="first-box-container" style="margin-top:20px;" onclick="addproduct()"><div class="first-box-container-text">Add Product</div></div>
-            <div class="first-box-container" style="margin-top:20px;"><div class="first-box-container-text">Display Product</div></div>
+            <div class="first-box-container" style="margin-top:20px;" onclick="displayproduct()"><div class="first-box-container-text">Display Product</div></div>
 
-            <div class="first-box-container" style="margin-top:20px;"><div class="first-box-container-text">Product Details</div></div>
+            <div class="first-box-container" style="margin-top:20px;" onclick="productdetails()"><div class="first-box-container-text">Product Details</div></div>
             <div class="first-box-container" style="margin-top:20px;"><div class="first-box-container-text">Display Product D.</div></div>
             <div class="first-box-container" style="margin-top:20px;"><div class="first-box-container-text">Logout</div></div>
 
@@ -68,9 +68,9 @@
                  </select>
              
              <input type="text" maxlength="10" placeholder="Enter Productname" id="producthere" onchange="validation()"/>
-              <div id="inputfirsterr"></div>
+              <div id="inputfirsterra"></div>
              <input type="file" id="filesa"/>
-             <div id="inputseconderr"></div>
+             <div id="inputseconderra"></div>
             </div>
             <div class="btn-container" onclick="submitproduct()">
              <div class="submit" >Submit</div>
@@ -78,8 +78,61 @@
          </div>
        
        </div>
+
+
     </div>
+
+
+
+    <div  class="dtp" id="dp">
+        <!-- <div class="display-coloumn"><div>Icon</div><div>Category Name</div><div>Product Name</div><div>Price</div><div>Offer Price</div></div> -->
+       
+        <div id="showp" >
+            
+        </div>
+       </div>
+
+    
+       <!-- <div class="productdetails"  style="display: flex; justify-content: center; "  id="prdetails"> -->
+       <div class="productdetails" style="width: 80%; height: 80vh;display: flex;justify-content: center; align-items: center;" id="prdetails">
+        <div   style="width: 70%;background: rgb(220, 212, 212);border-radius: 5px; box-shadow: inset 1px 0px 5px 0px" >
+            <div class="login-container"> <div>Products Details</div></div>
+     
+            <div class="field-container">
+                <div class="dropdawntwo-container">
+                 <select id="dropdownaa" onchange="changeproduct()">
+                     <option value="">-Select Category-</option>
+                 </select>
+             
+                 <select id="dropdownproduct">
+                     <option value="">-Select Product-</option>
+                 </select>
+             </div>
+     
+             <div style="display: flex; gap: 52px; width: 86%;"><input type="text"  placeholder="Color" id="color"/><input type="text" placeholder="Enter Model No" id="modelno"/></div>
+             <div style="display: flex; gap: 52px; width: 86%;"><input type="text"  placeholder="Price" id="price"/><input type="text" placeholder="Offer Price" id="offerprice"/></div>
+             <div style="display: flex; gap: 55px; width: 86%;"><input type="text"  placeholder="Stock" id="stock"/><input type="text" placeholder="Rating" id="rating"/></div>
+     
+             <div id="inputfirsterr"></div>
+             <!-- <input type="file" id="fileproduct"/> -->
+             <div id="inputseconderr"></div>
+            </div>
+            <div class="btn-container" style="padding-bottom: 20px;">
+             <div class="submit" onclick="submit_productdetails()" >Submit</div>
+            </div>
+         </div>
+        </div>
+         <!-- </div> -->
     </div>
+    
+    
+    
+    
+    
+    </div>
+
+   
+    
 
 </body>
 </html>
