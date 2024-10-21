@@ -1,9 +1,19 @@
 var fetchcategory=[]
 var fetchproduct=[]
 var fetchproductbycateogyid=[]
+var fetchcategoryandproductdetails =[]
+var retrievedData=[] 
+const fetchDataFromLocal=async()=>
+{
+    retrievedData =await localStorage.getItem('UserData');
+    console.log("retrieve length data:",retrievedData.length)
+
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     // second.innerHTML='hello'
+    // console.log("storage i am checking:",JSON.parse(retrievedData))
+    fetchDataFromLocal()
     fetch('http://localhost:3000/category/fetch_category', {
         method: 'GET',
         headers: {
@@ -108,6 +118,35 @@ document.addEventListener('DOMContentLoaded', () => {
         alert("Error")
     });
 
+
+
+
+
+    fetch('http://localhost:3000/product/fetch_categoryandproductdetails', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        // body: JSON.stringify({categoryname:userna,picture:sp[index-1]}),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        
+        return response.json();
+    })
+    .then(data => {
+        fetchcategory=data.data 
+        console.log('Success:', data);
+        fetchcategoryandproductdetails=data.data
+        console.log("dddddddddddddddddddddddddddddddddddddddd:",data.data)
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert("Error")
+    });
+
 })
 
 
@@ -117,8 +156,32 @@ document.getElementById("dc").classList.add('hd')
 document.getElementById('pc').classList.add('hidden-product');
 document.getElementById("dp").classList.add('dtp')
 document.getElementById("prdetails").classList.add("productdetails")
+document.getElementById("dpd").classList.add('dtpd')
 
 document.getElementById("second").classList.remove('hidden')
+
+}
+
+
+function displayproductdetails()
+{
+    document.getElementById("dc").classList.add('hd')
+    document.getElementById('pc').classList.add('hidden-product');
+    document.getElementById("dp").classList.add('dtp')
+    document.getElementById("prdetails").classList.add("productdetails")
+    document.getElementById("second").classList.add('hidden')
+    document.getElementById("dpd").classList.remove('dtpd')
+    // var a =[{categoryname:'Pizza',productname:"Sub Pizza",price:80,offerprice:50},{categoryname:'Pizza',productname:"Sub Pizza",price:80,offerprice:50},{categoryname:'Pizza',productname:"Sub Pizza",price:80,offerprice:50},{categoryname:'Pizza',productname:"Sub Pizza",price:80,offerprice:50},{categoryname:'Pizza',productname:"Sub Pizza",price:80,offerprice:50},{categoryname:'Pizza',productname:"Sub Pizza",price:80,offerprice:50},{categoryname:'Pizza',productname:"Sub Pizza",price:80,offerprice:50},{categoryname:'Pizza',productname:"Sub Pizza",price:80,offerprice:50},{categoryname:'Pizza',productname:"Sub Pizza",price:80,offerprice:50},{categoryname:'Pizza',productname:"Sub Pizza",price:80,offerprice:50}]
+    var result =`<table width="100%" cellspacing='0' cellpadding="5"><tr "><th>Icon</th><th>S.No</th><th>Category Name</th><th>Product Name</th><th>Model No</th><th>Price</th><th>Offer Price</th><th>Stock</th><th>Rating</th><th>Color</th></tr>`
+    fetchcategoryandproductdetails.map((item,index)=>{
+       
+        // result+=`<div class="table-container"><div><i class="fa-solid fa-pen-to-square" style="margin-right: 20px;"></i><i class="fa-solid fa-trash"></i></div><div>${item.categoryname}</div><div>${item.productname}</div><div>${item.price}</div><div>${item.offerprice}</div></div>`
+        result+=`<tr ><td height="50px"></td><td></td><td></td><td></td><td></td><td></td></tr><tr></tr><tr ><td><i class="fa-solid fa-pen-to-square" style="margin-right: 50px;"></i><i class="fa-solid fa-trash"></i></td><td>${index}</td><td>${item.categoryname}</td><td>${item.productname}</td><td>${item.modelno}</td><td>${item.price}</td><td>${item.offerprice}</td><td>${item.stock}</td><td>${item.rating}</td><td>${item.color}</td></tr>`
+    })
+    result+=`</table>`
+    showpa.innerHTML=result
+
+
 
 }
 function displaycategory()
@@ -127,6 +190,7 @@ function displaycategory()
     document.getElementById('pc').classList.add('hidden-product');
     document.getElementById("dp").classList.add('dtp')
     document.getElementById("prdetails").classList.add("productdetails")
+    document.getElementById("dpd").classList.add('dtpd')
 
 
     document.getElementById("dc").classList.remove('hd')
@@ -230,6 +294,7 @@ function displayproduct()
 
     document.getElementById("dc").classList.add('hd')
     document.getElementById("prdetails").classList.add("productdetails")
+    document.getElementById("dpd").classList.add('dtpd')
 
     document.getElementById("dp").classList.remove('dtp')
 
@@ -251,6 +316,7 @@ function productdetails()
 {
     document.getElementById("second").classList.add('hidden')
     document.getElementById('pc').classList.add('hidden-product');
+    document.getElementById("dpd").classList.add('dtpd')
 
     document.getElementById("dc").classList.add('hd')
     document.getElementById("dp").classList.add('dtp')
@@ -263,6 +329,7 @@ function addproduct()
     document.getElementById("dc").classList.add('hd')
     document.getElementById("dp").classList.add('dtp')
     document.getElementById("prdetails").classList.add("productdetails")
+    document.getElementById("dpd").classList.add('dtpd')
 
     document.getElementById('pc').classList.remove('hidden-product');
     

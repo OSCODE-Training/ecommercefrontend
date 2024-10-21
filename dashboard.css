@@ -215,12 +215,20 @@ box-shadow: 0px 0px 5px 2px rgb(142, 139, 139);
 .dtp{
     display: none !important;
 }
+.dtpd{
+    display: none !important;
+}
 #dc{
     width: 90%;
     padding-top: 10px;
     width: 79vw;
 }
 #dp{
+    width: 90%;
+    padding-top: 10px;
+    width: 79vw;
+}
+#dpd{
     width: 90%;
     padding-top: 10px;
     width: 79vw;

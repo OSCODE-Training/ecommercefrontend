@@ -8,7 +8,7 @@ function validation()
    var r = true
    if(!userna)
    {
-    document.getElementById('inputfirsterr').textContent="Please Enter Name"
+    document.getElementById('inputfirsterr').textContent="Please Enter Email Address"
     r=false
    }else {
     document.getElementById('inputfirsterr').textContent=""
@@ -16,7 +16,7 @@ function validation()
 
    if(!pass)
     {
-     document.getElementById('inputseconderr').textContent="Please Enter Name"
+     document.getElementById('inputseconderr').textContent="Please Enter Password "
      r=false
  
     }
@@ -35,7 +35,41 @@ function submit()
    
  if( validation())
 {
-alert("yes")
+    alert(users.value+" "+ password.value)
+    // alert(window.location.href) 
+    // Redirect to Dashboard
+    // window.location.href = 'file:///D:/ecommercefrontend/Dashboard.html';
+    fetch('http://localhost:3000/product/check_admin', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({"emailid":users.value,"password":password.value}),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        
+        return response.json();
+    })
+    .then(data => {
+        console.log('Success:', data);
+        if(data.data.length>0)
+        {
+            localStorage.setItem('UserData',JSON.stringify(data.data));
+        }else
+        {
+            alert("User Invalid")
+        }
+        console.log("userData is this:",data.data)
+        
+       
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert("Error")
+    });
 }
    
 }
