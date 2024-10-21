@@ -38,7 +38,6 @@ function submit()
     alert(users.value+" "+ password.value)
     // alert(window.location.href) 
     // Redirect to Dashboard
-    // window.location.href = 'file:///D:/ecommercefrontend/Dashboard.html';
     fetch('http://localhost:3000/product/check_admin', {
         method: 'POST',
         headers: {
@@ -58,6 +57,9 @@ function submit()
         if(data.data.length>0)
         {
             localStorage.setItem('UserData',JSON.stringify(data.data));
+            window.location.href = 'file:///D:/ecommercefrontend/Dashboard.html';
+
+
         }else
         {
             alert("User Invalid")

@@ -2,11 +2,12 @@ var fetchcategory=[]
 var fetchproduct=[]
 var fetchproductbycateogyid=[]
 var fetchcategoryandproductdetails =[]
-var retrievedData=[] 
+var retrievedData=[]
 const fetchDataFromLocal=async()=>
 {
-    retrievedData =await localStorage.getItem('UserData');
-    console.log("retrieve length data:",retrievedData.length)
+    var  retrievedData =await localStorage.getItem('UserData');
+     
+    console.log("retrieve length data:",retrievedData)
 
 }
 
@@ -149,6 +150,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 })
 
+function logout()
+{
+    var a = confirm("Do you want to logout?")
+    if(a)
+    {
+    window.location.href="file:///D:/ecommercefrontend/loginpage.html"
+    localStorage.clear()
+    }
+}
 
 function fire()
 {
@@ -321,6 +331,7 @@ function productdetails()
     document.getElementById("dc").classList.add('hd')
     document.getElementById("dp").classList.add('dtp')
     document.getElementById("prdetails").classList.remove("productdetails")
+    
 }
 
 function addproduct()
